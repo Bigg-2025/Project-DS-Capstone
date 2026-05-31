@@ -1,6 +1,6 @@
 import streamlit as st
 
-# konfigurasi halaman (harus paling atas) 
+# konfigurasi halaman 
 st.set_page_config(
     page_title="Dashboard Pengelolaan Sampah Nasional",
     page_icon="♻️",
@@ -43,42 +43,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# KPI cards (responsive CSS grid) 
+# KPI cards 
 render_kpi(dff)
 
-# # ── ROW 1 — Top 10 Kota & Jenis TPA ─────────────────────
-# col_a, col_b = st.columns([3, 2])
-# with col_a:
-#     section("🏙️ Top 10 Kota/Kabupaten — Timbulan Terbesar")
-#     st.plotly_chart(chart_top10_kota(dff), use_container_width=True)
-# with col_b:
-#     section("🗑️ Distribusi Jenis TPA")
-#     st.plotly_chart(chart_jenis_tpa(dff), use_container_width=True)
-
-
-# # ── ROW 2 — Pengelolaan per Provinsi & Scatter ───────────
-# section("📊 Analisis Pengelolaan Sampah")
-# fig_terkelola, fig_belum = chart_pengelolaan_provinsi(dff)
-# col_c, col_d = st.columns(2)
-# with col_c:
-#     st.plotly_chart(fig_terkelola, use_container_width=True)
-# with col_d:
-#     st.plotly_chart(fig_belum, use_container_width=True)
-# st.plotly_chart(chart_scatter(dff), use_container_width=True)
-
-
-# # ── ROW 3 — Timbulan per Provinsi & Box Plot ─────────────
-# col_e, col_f = st.columns(2)
-# with col_e:
-#     section("🌏 Total Timbulan per Provinsi")
-#     st.plotly_chart(chart_timbulan_provinsi(dff), use_container_width=True)
-# with col_f:
-#     section("📦 Distribusi Timbulan per Jenis TPA")
-#     st.plotly_chart(chart_boxplot_tpa(dff), use_container_width=True)
-
-
-#  ROW 1 — Top 10 Kota & Jenis TPA
-# Desktop: 2 kolom | Mobile: 1 kolom via tab
 section("🏙️ Persebaran Timbulan & Jenis TPA")
 tab_r1a, tab_r1b = st.tabs(["🏙️ Top 10 Kota/Kabupaten", "🗑️ Distribusi Jenis TPA"])
 with tab_r1a:
@@ -87,7 +54,7 @@ with tab_r1b:
     st.plotly_chart(chart_jenis_tpa(dff), use_container_width=True)
 
 
-# ROW 2 — Pengelolaan per Provinsi & Scatter
+# Pengelolaan per Provinsi & Scatter
 section("📊 Analisis Pengelolaan Sampah")
 tab_r2a, tab_r2b, tab_r2c = st.tabs([
     "✅ % Terkelola per Provinsi",
@@ -103,7 +70,7 @@ with tab_r2c:
     st.plotly_chart(chart_scatter(dff), use_container_width=True)
 
 
-# ROW 3 — Timbulan per Provinsi & Box Plot 
+# Timbulan per Provinsi & Box Plot 
 section("🌏 Distribusi Timbulan")
 tab_r3a, tab_r3b = st.tabs(["🌏 Total per Provinsi", "📦 Distribusi per Jenis TPA"])
 with tab_r3a:
@@ -112,7 +79,7 @@ with tab_r3b:
     st.plotly_chart(chart_boxplot_tpa(dff), use_container_width=True)
 
 
-# ROW 4 — PETA CHOROPLETH 
+# PETA CHOROPLETH 
 section("🗺️ Peta Persebaran Sampah Nasional")
 
 if geojson:
